@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindLang - 자기 성찰적 AI 자동화 생태계</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* 헤더 */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        nav a {
+            color: white;
+            margin-left: 30px;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* 히어로 섹션 */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            animation: slideDown 0.8s ease;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* 섹션 */
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #333;
+        }
+
+        /* 9개 프로젝트 그리드 */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .project-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .project-card h3 {
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+
+        .project-card p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* 파이프라인 */
+        .pipeline {
+            background: #f9f9f9;
+            padding: 80px 20px;
+        }
+
+        .pipeline-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pipeline-diagram {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .pipeline-step {
+            flex: 1;
+            min-width: 150px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 4px solid #667eea;
+        }
+
+        .pipeline-arrow {
+            font-size: 30px;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        /* 성능 지표 */
+        .metrics {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+        }
+
+        .metrics-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .metric-card {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .metric-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* 철학 섹션 */
+        .philosophy {
+            padding: 80px 20px;
+        }
+
+        .philosophy-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .philosophy-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .philosophy-card {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .philosophy-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        /* Red Team 강조 */
+        .red-team-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 80px 20px;
+        }
+
+        .red-team-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .red-team-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .red-team-content h2 {
+            text-align: left;
+        }
+
+        .red-team-benefits {
+            list-style: none;
+        }
+
+        .red-team-benefits li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .red-team-benefits li:before {
+            content: "✓";
+            color: white;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 20px;
+        }
+
+        /* 푸터 */
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* 애니메이션 */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 반응형 */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .red-team-content {
+                grid-template-columns: 1fr;
+            }
+
+            .pipeline-diagram {
+                flex-direction: column;
+            }
+
+            nav a {
+                margin-left: 15px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                🧠 MindLang
+            </div>
+            <nav>
+                <a href="#overview">소개</a>
+                <a href="#projects">프로젝트</a>
+                <a href="#philosophy">철학</a>
+                <a href="#metrics">성능</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 히어로 섹션 -->
+    <section class="hero" id="overview">
+        <div class="hero-container">
+            <h1>자기 성찰적 AI 자동화 생태계</h1>
+            <p>자연어 명령 → 자동 코드 생성 → 자동 배포 → 자동 모니터링 → 자동 개선</p>
+            <p style="margin-bottom: 40px; font-size: 14px; opacity: 0.9;">
+                9개 통합 프로젝트 | 60,000+ LOC | 92%+ 정확도 | 3.8개월 ROI
+            </p>
+            <button class="cta-button" onclick="alert('MindLang 데모: 준비 중입니다.')">시작하기</button>
+        </div>
+    </section>
+
+    <!-- 프로젝트 소개 -->
+    <section class="section" id="projects">
+        <h2>🚀 9개 통합 프로젝트</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-number">1️⃣</div>
+                <h3>Intent Language</h3>
+                <p>자연어 입력을 형식 언어로 파싱하고 Guardian Blade로 검증합니다.</p>
+            </div>
+            <div class="project-card">
+                <div class="project-number">2️⃣</div>
+                <h3>Proof_ai</h3>
+                <p>Z3 SMT Solver로 모든 의사결정을 수학적으로 증명합니다.</p>
+            </div>
+            <div class="project-card">
+                <div class="project-number">3️⃣</div>
+                <h3>MindLang + Red Team</h3>
+                <p>3경로 병렬 추론 + 자기 비판적 Red Team 분석</p>
+            </div>
+            <div class="project-card">
+                <div class="project-number">4️⃣</div>
+                <h3>multi-lang-parser</h3>
+                <p>6개 언어로 자동 코드 생성 (Python, JS, Go, Rust, Java, C++)</p>
+            </div>
+            <div class="project-card">
+                <div class="project-number">5️⃣</div>
+                <h3>AWS SDK</h3>
+                <p>Blue-Green 무중단 배포로 인프라 자동 확장</p>
+            </div>
+            <div class="project-card">
+                <div class="project-number">6️⃣</div>
+                <h3>tui-monitor</h3>
+                <p>실시간 모니터링 대시보드로 시스템 상태 추적</p>
+            </div>
+            <div class="project-card">
+                <div class="project-number">7️⃣</div>
+                <h3>AION</h3>
+                <p>3단계 자율 운영 (의사결정 → 분석 → 정책 조정)</p>
+            </div>
+            <div class="project-card">
+                <div class="project-number">8️⃣</div>
+                <h3>HNSW VectorDB</h3>
+                <p>벡터 검색을 155,423배 가속 (O(log N) 복잡도)</p>
+            </div>
+            <div class="project-card">
+                <div class="project-number">9️⃣</div>
+                <h3>MindLang Red Team</h3>
+                <p>모든 의사결정에 자동 비판 (Path 4)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 파이프라인 시각화 -->
+    <section class="pipeline">
+        <div class="pipeline-container">
+            <h2>🔄 완전 자동화 파이프라인</h2>
+            <div class="pipeline-diagram">
+                <div class="pipeline-step">
+                    <strong>자연어 입력</strong><br>
+                    "배포하고 모니터링해"
+                </div>
+                <div class="pipeline-arrow">→</div>
+                <div class="pipeline-step">
+                    <strong>Intent</strong><br>
+                    형식 파싱
+                </div>
+                <div class="pipeline-arrow">→</div>
+                <div class="pipeline-step">
+                    <strong>Proof_ai</strong><br>
+                    수학 검증
+                </div>
+                <div class="pipeline-arrow">→</div>
+                <div class="pipeline-step">
+                    <strong>MindLang</strong><br>
+                    의사결정 + Red Team
+                </div>
+                <div class="pipeline-arrow">→</div>
+                <div class="pipeline-step">
+                    <strong>Code Gen</strong><br>
+                    자동 코드
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <div style="font-size: 12px; color: #666;">
+                    ↓ Deploy ↓ Monitor ↓ Optimize ↓
+                </div>
+                <div style="margin-top: 20px; padding: 20px; background: white; border-radius: 10px; display: inline-block;">
+                    <strong style="color: #667eea;">✅ 완전 자동화 완료 (90초)</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Red Team 강조 -->
+    <section class="red-team-section">
+        <div class="red-team-container">
+            <h2 style="text-align: center; margin-bottom: 40px;">🚨 Red Team: AI의 자기 비판</h2>
+            <div class="red-team-content">
+                <div>
+                    <h3>AI는 스스로를 의심합니다</h3>
+                    <p style="margin-bottom: 20px;">
+                        Path 1,2,3에서 결정하면, Path 4 Red Team이 자동으로 반대 의견을 제시합니다.
+                    </p>
+                    <ul class="red-team-benefits">
+                        <li>의심되는 가정들</li>
+                        <li>잠재적 실패 시나리오</li>
+                        <li>숨겨진 위험 요소</li>
+                        <li>대체 권고사항</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>결과: 더 나은 결정</h3>
+                    <p>
+                        신뢰도 높음 (95%) → Red Team 강력 경고<br>
+                        신뢰도 낮음 (40%) → Red Team 신중한 경고<br>
+                        <br>
+                        <strong>철학: "확신이 높을수록 더 신중하게"</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 성능 지표 -->
+    <section class="metrics" id="metrics">
+        <div class="metrics-container">
+            <h2>📊 성능 지표</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">9개</div>
+                    <div class="metric-label">통합 프로젝트</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">60K+</div>
+                    <div class="metric-label">총 코드 줄 수</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">92%+</div>
+                    <div class="metric-label">의사결정 정확도</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">6.43ms</div>
+                    <div class="metric-label">벡터 검색 속도</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">155K배</div>
+                    <div class="metric-label">성능 개선</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">90초</div>
+                    <div class="metric-label">사건 대응 시간</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">$58K/월</div>
+                    <div class="metric-label">월간 ROI</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">3.8개월</div>
+                    <div class="metric-label">투자 회수 기간</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 철학 섹션 -->
+    <section class="philosophy" id="philosophy">
+        <div class="philosophy-container">
+            <h2>🎓 Kim Developer의 설계 철학</h2>
+            <div class="philosophy-cards">
+                <div class="philosophy-card">
+                    <h3>기록이 증명이다</h3>
+                    <p>모든 판단과 실행을 1초 단위로 Gogs에 기록. 타임머신처럼 히스토리 감시 가능.</p>
+                </div>
+                <div class="philosophy-card">
+                    <h3>간결함이 정답</h3>
+                    <p>"다 쓸필요는 없고 필요한것만". 불필요한 복잡함을 제거하고 핵심만 전달.</p>
+                </div>
+                <div class="philosophy-card">
+                    <h3>자동화 ≠ 검증 제거</h3>
+                    <p>자동화는 속도를 위함. Red Team 검증은 필수. 최종 결정은 인간의 손에.</p>
+                </div>
+                <div class="philosophy-card">
+                    <h3>한글은 기본</h3>
+                    <p>기술은 English, 설명은 Korean. 한글 완벽 지원은 선택이 아닌 필수.</p>
+                </div>
+                <div class="philosophy-card">
+                    <h3>작은 틈을 기회로</h3>
+                    <p>완벽함은 없다. 하지만 더 나아질 수 있다. 부족을 찾아 진화시킨다.</p>
+                </div>
+                <div class="philosophy-card">
+                    <h3>자신의 결정을 의심하라</h3>
+                    <p>Red Team은 스스로의 반대 의견. 경계 없는 자동화는 위험하다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <div class="footer-container">
+            <h3 style="margin-bottom: 20px;">🧠 MindLang</h3>
+            <p style="margin-bottom: 20px;">
+                자기 성찰적 AI로 자동화의 미래를 만듭니다.
+            </p>
+            <div class="footer-links">
+                <a href="#overview">소개</a>
+                <a href="#projects">프로젝트</a>
+                <a href="#philosophy">철학</a>
+                <a href="https://gogs.dclub.kr/kim/mindlang.git" target="_blank">Gogs 저장소</a>
+            </div>
+            <p style="font-size: 12px; opacity: 0.8; margin-top: 20px;">
+                Made with ❤️ by Kim Developer | Digital Twin Status: Active
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // 부드러운 스크롤
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
